@@ -1,0 +1,1152 @@
+<html><head><base href="https://websim.ai/myspace/home">
+    <title>MySpace 2010 - Home</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url('/images/myspace_bg_blue.jpg') repeat;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        transition: background-image 0.3s, background-size 0.3s, background-repeat 0.3s, background-attachment 0.3s, background 0.3s;
+        background-position: center;
+    }
+    #container {
+        width: 900px;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #header {
+        background: #003399;
+        padding: 10px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    #search {
+        display: flex;
+    }
+    #search input {
+        padding: 5px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+    }
+    #search button {
+        background: #ff6600;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+    }
+    #nav {
+        background: #6698cb;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+    }
+    #nav a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+    .toggle-container {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: white;
+    }
+    .toggle-container label {
+        cursor: pointer;
+    }
+    #edit-toggle,
+    #reorder-toggle {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 40px;
+        height: 20px;
+        background: #ccc;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 0;
+    }
+    #edit-toggle:checked,
+    #reorder-toggle:checked {
+        background: #ff6600;
+    }
+    #edit-toggle::after,
+    #reorder-toggle::after {
+        content: '';
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        transition: 0.3s;
+    }
+    #edit-toggle:checked::after,
+    #reorder-toggle:checked::after {
+        left: 21px;
+    }
+    #main {
+        display: flex;
+    }
+    #sidebar {
+        width: 200px;
+        padding: 10px;
+        border-right: 1px solid #ccc;
+    }
+    #content {
+        flex: 1;
+        padding: 10px;
+        transition: background 0.3s;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    #content.pattern {
+        background-size: auto !important;
+        background-repeat: repeat !important;
+    }
+    .bg-control-group {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: white;
+    }
+    .bg-control-group select,
+    .bg-control-group input[type="color"] {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0;
+    }
+    .bg-control-group label {
+        display: block;
+        margin: 5px 0;
+        font-weight: bold;
+    }
+    #content-bg-type {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    #gradient-bg-controls input[type="color"] {
+        width: 48%;
+        margin: 0 1%;
+    }
+    #gradient-direction {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0;
+    }
+    .section {
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .section h2 {
+        margin-top: 0;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+    #notifications {
+        list-style-type: none;
+        padding: 0;
+    }
+    #notifications li {
+        margin-bottom: 5px;
+        padding: 5px;
+        background: #fff;
+        border: 1px solid #ddd;
+    }
+    #friend-updates {
+        list-style-type: none;
+        padding: 0;
+    }
+    #friend-updates li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+    }
+    .friend-update-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    .friend-update-header img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+    }
+    .friend-name {
+        font-weight: bold;
+        color: #003399;
+    }
+    .update-time {
+        font-size: 0.8em;
+        color: #666;
+    }
+    #bulletins {
+        list-style-type: none;
+        padding: 0;
+    }
+    #bulletins li {
+        margin-bottom: 5px;
+        padding: 5px;
+        background: #fff;
+        border: 1px solid #ddd;
+    }
+    #cool-new-people {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .cool-person {
+        text-align: center;
+        width: 80px;
+    }
+    .cool-person img {
+        width: 70px;
+        height: 70px;
+        border: 1px solid #ccc;
+    }
+    #player {
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+        position: relative;
+    }
+    #youtube-section {
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    #youtube-input {
+        width: 100%;
+        padding: 5px;
+        margin: 10px 0;
+    }
+    #change-video-btn {
+        background: #ff6600;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .edit-button {
+        background: #ff6600;
+        color: white;
+        border: none;
+        padding: 3px 8px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 12px;
+        margin: 2px;
+    }
+    
+    .edit-mode .editable {
+        border: 2px dashed #ff6600;
+        padding: 5px;
+        margin: 2px;
+        position: relative;
+    }
+    
+    .edit-controls {
+        background: rgba(255,255,255,0.9);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 5px 0;
+        display: none;
+    }
+    
+    .edit-mode .edit-controls {
+        display: block;
+    }
+    
+    /* Drag handle styles */
+    .drag-handle {
+      cursor: move;
+      padding: 5px;
+      background: #eee;
+      border: 1px solid #ccc;
+      display: none;
+      margin-bottom: 5px;
+    }
+    
+    /* Show drag handles in reorder mode */
+    .reorder-mode .drag-handle {
+        display: block;
+    }
+    
+    #background-settings, #header-settings {
+        display: none;
+    }
+    
+    .edit-mode #background-settings, 
+    .edit-mode #header-settings {
+        display: block;
+    }
+    
+    .drag-handle {
+      cursor: move;
+      padding: 5px;
+      background: #eee;
+      border: 1px solid #ccc;
+      display: none;
+      margin-bottom: 5px;
+    }
+    
+    .edit-mode .drag-handle {
+      display: none; /* Ensure drag handles are not displayed in edit mode */
+    }
+    
+    #page-style-settings {
+      display: none;
+    }
+    
+    .edit-mode #page-style-settings {
+      display: block;
+    }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <div id="logo">GenAria</div>
+        <div id="search">
+            <input type="text" placeholder="Search MySpace">
+            <button>Search</button>
+        </div>
+    </div>
+    <div id="nav">
+        <a href="https://websim.ai/myspace/home">Home</a>
+        <a href="https://websim.ai/myspace/profile">Profile</a>
+        <a href="https://websim.ai/myspace/friends">Friends</a>
+        <a href="https://websim.ai/myspace/music">Music</a>
+        <a href="https://websim.ai/myspace/videos">Videos</a>
+        <div class="toggle-container">
+            <label for="edit-toggle">Edit Mode</label>
+            <input type="checkbox" id="edit-toggle">
+        </div>
+        <div class="toggle-container">
+            <label for="reorder-toggle">Reorder Mode</label>
+            <input type="checkbox" id="reorder-toggle">
+        </div>
+    </div>
+    <div id="main">
+        <div id="sidebar">
+            <div class="editable" id="profile-pic-container">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <img src="/images/tom_myspace.jpg" alt="Your Profile Picture" style="width:100%;" id="profile-pic">
+                <div class="edit-controls">
+                    <input type="file" accept="image/*" id="profile-pic-input">
+                    <button class="edit-button" onclick="updateProfilePic()">Update Picture</button>
+                </div>
+            </div>
+            <div class="editable" id="welcome-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Welcome, Tom!</h2>
+                <div class="edit-controls">
+                    <input type="text" id="username-input" placeholder="Enter your name">
+                    <button class="edit-button" onclick="updateUsername()">Update Name</button>
+                </div>
+            </div>
+            <p><a href="https://websim.ai/myspace/messages">Messages (3)</a></p>
+            <p><a href="https://websim.ai/myspace/friend-requests">Friend Requests (7)</a></p>
+            <div class="section editable" id="notifications-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h3>Notifications</h3>
+                <ul id="notifications">
+                    <li>Tila Tequila commented on your photo</li>
+                    <li>Mark Zuckerberg added you as a friend</li>
+                    <li>Fall Out Boy uploaded a new song</li>
+                </ul>
+                <div class="edit-controls">
+                    <textarea id="notifications-input" placeholder="Add new notification"></textarea>
+                    <button class="edit-button" onclick="addNotification()">Add Notification</button>
+                    <button class="edit-button" onclick="clearNotifications()">Clear All</button>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="player" class="editable">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h3>MySpace Music Charts</h3>
+                <p>Now Playing: Lady Gaga - Bad Romance</p>
+                <img id="music-cover-img" src="/images/music_cover_default.jpg" alt="Music Cover" style="width:65px; height:auto; margin-bottom:10px;">
+                <audio controls>
+                    <source src="/audio/bad_romance.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="edit-controls">
+                    <input type="file" accept="audio/*" id="music-input">
+                    <button class="edit-button" onclick="updateMusic()">Update Music</button>
+                    
+                    <input type="file" accept="image/*" id="music-cover-input">
+                    <button class="edit-button" onclick="updateMusicCover()">Update Cover</button>
+                    
+                    <div class="bg-control-group">
+                        <label>Player Background Type:</label>
+                        <select id="player-bg-type">
+                            <option value="">Select Background Type</option>
+                            <option value="image">Image/GIF</option>
+                            <option value="color">Solid Color</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    
+                    <div id="player-image-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Image Background:</label>
+                        <input type="file" accept="image/*" id="player-bg-image">
+                    </div>
+
+                    <div id="player-color-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Choose Color:</label>
+                        <input type="color" id="player-bg-color">
+                    </div>
+
+                    <div id="player-gradient-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Gradient Colors:</label>
+                        <div>
+                            <input type="color" id="player-gradient-color-1">
+                            <input type="color" id="player-gradient-color-2">
+                        </div>
+                        <label>Direction:</label>
+                        <select id="player-gradient-direction">
+                            <option value="to right">Horizontal</option>
+                            <option value="to bottom">Vertical</option>
+                            <option value="to bottom right">Diagonal</option>
+                        </select>
+                    </div>
+
+                    <button class="edit-button" onclick="updatePlayerBackground()">Update Player Background</button>
+                </div>
+            </div>
+            <div class="section editable" id="background-settings">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Background Settings</h2>
+                <div class="edit-controls">
+                    <div class="bg-control-group">
+                        <label>Background Type:</label>
+                        <select id="content-bg-type">
+                            <option value="image">Image/GIF</option>
+                            <option value="color">Solid Color</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    
+                    <div id="image-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Image Settings:</label>
+                        <input type="file" accept="image/*" id="content-bg-image">
+                        <div>
+                            <label>
+                                <input type="radio" name="pattern-type" value="cover" checked> 
+                                Full Cover
+                            </label>
+                            <label>
+                                <input type="radio" name="pattern-type" value="pattern"> 
+                                Repeat Pattern
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="color-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Choose Color:</label>
+                        <input type="color" id="content-bg-color">
+                    </div>
+
+                    <div id="gradient-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Gradient Colors:</label>
+                        <div>
+                            <input type="color" id="gradient-color-1">
+                            <input type="color" id="gradient-color-2">
+                        </div>
+                        <label>Direction:</label>
+                        <select id="gradient-direction">
+                            <option value="to right">Horizontal</option>
+                            <option value="to bottom">Vertical</option>
+                            <option value="to bottom right">Diagonal</option>
+                        </select>
+                    </div>
+
+                    <button class="edit-button" onclick="updateContentStyle()">Update Style</button>
+                </div>
+            </div>
+            <div class="section editable" id="header-settings">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Header Customization</h2>
+                <div class="edit-controls">
+                    <input type="color" id="header-color" value="#003399">
+                    <input type="color" id="menu-color" value="#6698cb">
+                    <input type="file" accept="image/*" id="banner-image-input">
+                    <button class="edit-button" onclick="updateHeaderStyle()">Update Header</button>
+                </div>
+            </div>
+            <div class="section editable" id="youtube-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>YouTube Video Player</h2>
+                <iframe id="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                <input type="text" id="youtube-input" placeholder="Paste YouTube video URL here">
+                <button id="change-video-btn">Change Video</button>
+                <div class="edit-controls">
+                    <button class="edit-button" onclick="document.getElementById('youtube-input').focus()">Edit</button>
+                </div>
+            </div>
+            <div class="section editable" id="friend-updates-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Friend Updates</h2>
+                <ul id="friend-updates">
+                    <li>
+                        <div class="friend-update-header">
+                            <img src="/images/friend_avril.jpg" alt="Avril Lavigne">
+                            <div>
+                                <div class="friend-name">Avril Lavigne</div>
+                                <div class="update-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <p>Just finished recording my new single! Can't wait for you all to hear it!</p>
+                    </li>
+                    <li>
+                        <div class="friend-update-header">
+                            <img src="/images/friend_pete.jpg" alt="Pete Wentz">
+                            <div>
+                                <div class="friend-name">Pete Wentz</div>
+                                <div class="update-time">5 hours ago</div>
+                            </div>
+                        </div>
+                        <p>Fall Out Boy's world tour kicks off next month! Who's coming to see us?</p>
+                    </li>
+                </ul>
+                <div class="edit-controls">
+                    <textarea id="friend-update-input" placeholder="Add new friend update"></textarea>
+                    <button class="edit-button" onclick="addFriendUpdate()">Add Update</button>
+                </div>
+            </div>
+            <div class="section editable" id="bulletins-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Bulletins</h2>
+                <ul id="bulletins">
+                    <li><strong>MySpace Team:</strong> New feature alert! Check out our improved music player.</li>
+                    <li><strong>Tila Tequila:</strong> Hosting a party in LA this weekend. Who's in?</li>
+                    <li><strong>Blink-182:</strong> We're back! New album coming soon.</li>
+                </ul>
+                <div class="edit-controls">
+                    <textarea id="bulletin-input" placeholder="Add new bulletin"></textarea>
+                    <button class="edit-button" onclick="addBulletin()">Add Bulletin</button>
+                </div>
+            </div>
+            <div class="section editable" id="cool-new-people-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Cool New People</h2>
+                <div id="cool-new-people">
+                    <div class="cool-person">
+                        <img src="/images/cool_person1.jpg" alt="Cool Person 1">
+                        <div>Sarah, 22</div>
+                    </div>
+                    <div class="cool-person">
+                        <img src="/images/cool_person2.jpg" alt="Cool Person 2">
+                        <div>Mike, 28</div>
+                    </div>
+                    <div class="cool-person">
+                        <img src="/images/cool_person3.jpg" alt="Cool Person 3">
+                        <div>Emily, 19</div>
+                    </div>
+                    <div class="cool-person">
+                        <img src="/images/cool_person4.jpg" alt="Cool Person 4">
+                        <div>Chris, 25</div>
+                    </div>
+                </div>
+                <div class="edit-controls">
+                    <input type="text" id="cool-person-name-input" placeholder="Name">
+                    <input type="number" id="cool-person-age-input" placeholder="Age">
+                    <button class="edit-button" onclick="addCoolPerson()">Add Person</button>
+                </div>
+            </div>
+            <div class="section editable" id="photo-gallery-section">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Photo Gallery</h2>
+                <div class="photo-gallery" id="photo-gallery"></div>
+                <div class="edit-controls">
+                    <input type="file" accept="image/*" multiple id="gallery-upload">
+                    <button class="edit-button" onclick="addGalleryPhotos()">Add Photos</button>
+                </div>
+            </div>
+            <div class="section editable" id="page-style-settings">
+                <div class="drag-handle">&#x22ee;&#x22ee; Drag to Reorder</div>
+                <h2>Page Style Settings</h2>
+                <div class="edit-controls">
+                    <div class="bg-control-group">
+                        <label>Background Type:</label>
+                        <select id="content-bg-type">
+                            <option value="image">Image/GIF</option>
+                            <option value="color">Solid Color</option>
+                            <option value="gradient">Gradient</option>
+                        </select>
+                    </div>
+                    
+                    <div id="image-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Image Settings:</label>
+                        <input type="file" accept="image/*" id="content-bg-image">
+                        <div>
+                            <label>
+                                <input type="radio" name="pattern-type" value="cover" checked> 
+                                Full Cover
+                            </label>
+                            <label>
+                                <input type="radio" name="pattern-type" value="pattern"> 
+                                Repeat Pattern
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="color-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Choose Color:</label>
+                        <input type="color" id="content-bg-color">
+                    </div>
+
+                    <div id="gradient-bg-controls" class="bg-control-group" style="display:none">
+                        <label>Gradient Colors:</label>
+                        <div>
+                            <input type="color" id="gradient-color-1">
+                            <input type="color" id="gradient-color-2">
+                        </div>
+                        <label>Direction:</label>
+                        <select id="gradient-direction">
+                            <option value="to right">Horizontal</option>
+                            <option value="to bottom">Vertical</option>
+                            <option value="to bottom right">Diagonal</option>
+                        </select>
+                    </div>
+
+                    <button class="edit-button" onclick="updateContentStyle()">Update Style</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="gallery-modal" id="gallery-modal">
+        <span class="close-modal">&#xd7;</span>
+        <img id="modal-image">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    
+    <script>
+    let sortableSidebar = null;
+    let sortableContent = null;
+    
+    function initDragAndDrop() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        sortableSidebar = new Sortable(sidebar, {
+            handle: '.drag-handle',
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            filter: '.edit-controls',
+            onEnd: function (evt) {
+                // Handle end of sorting if needed
+            }
+        });
+        sortableContent = new Sortable(content, {
+            handle: '.drag-handle',
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            filter: '.edit-controls',
+            onEnd: function (evt) {
+                // Handle end of sorting if needed
+            }
+        });
+    }
+    
+    function destroyDragAndDrop() {
+        if (sortableSidebar) {
+            sortableSidebar.destroy();
+            sortableSidebar = null;
+        }
+        if (sortableContent) {
+            sortableContent.destroy();
+            sortableContent = null;
+        }
+    }
+    
+    document.getElementById('edit-toggle').addEventListener('change', function (e) {
+      document.body.classList.toggle('edit-mode', e.target.checked);
+      const editables = document.querySelectorAll('.editable');
+      editables.forEach(el => {
+        if (!el.querySelector('input, textarea, select')) {
+          el.contentEditable = e.target.checked;
+        }
+      });
+      if (e.target.checked) {
+        const currentType = document.getElementById('content-bg-type').value;
+        document.querySelectorAll('.bg-control-group').forEach(group => {
+          group.style.display = 'none';
+        });
+        document.getElementById(`${currentType}-bg-controls`).style.display = 'block';
+      } else {
+        // Optionally, revert to original settings when edit mode is off
+      }
+    });
+    
+    document.getElementById('reorder-toggle').addEventListener('change', function (e) {
+        document.body.classList.toggle('reorder-mode', e.target.checked);
+        if (e.target.checked) {
+            initDragAndDrop();
+        } else {
+            destroyDragAndDrop();
+        }
+    });
+    
+    function updateBackground() {
+      const input = document.getElementById('content-bg-image');
+      const style = document.getElementById('bg-style').value;
+    
+      // Apply the selected style
+      applyBackgroundStyle(style);
+    
+      // Handle new image upload
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.body.style.backgroundImage = `url('${e.target.result}')`;
+          applyBackgroundStyle(style);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    
+    function applyBackgroundStyle(style) {
+      const body = document.body;
+    
+      // Reset all background properties first
+      body.style.backgroundSize = '';
+      body.style.backgroundRepeat = '';
+      body.style.backgroundAttachment = '';
+      body.style.backgroundPosition = '';
+      body.style.background = '';
+    
+      // Apply the selected style
+      switch(style) {
+        case 'cover':
+          body.style.backgroundSize = 'cover';
+          body.style.backgroundRepeat = 'no-repeat';
+          body.style.backgroundAttachment = 'scroll';
+          body.style.backgroundPosition = 'center';
+          break;
+          
+        case 'repeat':
+          body.style.backgroundSize = 'auto';
+          body.style.backgroundRepeat = 'repeat';
+          body.style.backgroundAttachment = 'scroll';
+          body.style.backgroundPosition = '0 0';
+          break;
+          
+        case 'fixed':
+          body.style.backgroundSize = 'cover';
+          body.style.backgroundRepeat = 'no-repeat';
+          body.style.backgroundAttachment = 'fixed';
+          body.style.backgroundPosition = 'center';
+          break;
+          
+        default:
+          body.style.background = '';
+          break;
+      }
+    }
+    
+    document.getElementById('content-bg-type').addEventListener('change', function (e) {
+      document.querySelectorAll('.bg-control-group').forEach(group => {
+        group.style.display = 'none';
+      });
+      switch (e.target.value) {
+        case 'image':
+          document.getElementById('image-bg-controls').style.display = 'block';
+          break;
+        case 'color':
+          document.getElementById('color-bg-controls').style.display = 'block';
+          break;
+        case 'gradient':
+          document.getElementById('gradient-bg-controls').style.display = 'block';
+          break;
+        default:
+          break;
+      }
+    });
+    
+    document.getElementById('player-bg-type').addEventListener('change', function (e) {
+        document.querySelectorAll('#player .bg-control-group').forEach(group => {
+            group.style.display = 'none';
+        });
+        switch (e.target.value) {
+            case 'image':
+                document.getElementById('player-image-bg-controls').style.display = 'block';
+                break;
+            case 'color':
+                document.getElementById('player-color-bg-controls').style.display = 'block';
+                break;
+            case 'gradient':
+                document.getElementById('player-gradient-bg-controls').style.display = 'block';
+                break;
+            default:
+                break;
+        }
+    });
+    
+    document.getElementById('change-video-btn').addEventListener('click', function () {
+      const input = document.getElementById('youtube-input');
+      const player = document.getElementById('youtube-player');
+      let videoUrl = input.value.trim();
+      let videoId = '';
+    
+      const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
+      const match = videoUrl.match(youtubeRegex);
+    
+      if (match && match[1]) {
+        videoId = match[1];
+      }
+    
+      if (videoId) {
+        player.src = `https://www.youtube.com/embed/${videoId}`;
+        input.value = '';
+      } else {
+        alert('Please enter a valid YouTube URL');
+      }
+    });
+    
+    document.getElementById('edit-toggle').addEventListener('change', function (e) {
+      document.body.classList.toggle('edit-mode', e.target.checked);
+      const editables = document.querySelectorAll('.editable');
+      editables.forEach(el => {
+        if (!el.querySelector('input, textarea, select')) {
+          el.contentEditable = e.target.checked;
+        }
+      });
+      if (e.target.checked) {
+        const currentType = document.getElementById('content-bg-type').value;
+        document.querySelectorAll('.bg-control-group').forEach(group => {
+          group.style.display = 'none';
+        });
+        document.getElementById(`${currentType}-bg-controls`).style.display = 'block';
+      }
+    });
+    
+    function updateProfilePic() {
+      const input = document.getElementById('profile-pic-input');
+      const img = document.getElementById('profile-pic');
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    
+    function updateUsername() {
+      const input = document.getElementById('username-input');
+      const welcome = document.querySelector('#welcome-section h2');
+      if (input.value.trim()) {
+        welcome.textContent = `Welcome, ${input.value}!`;
+        input.value = '';
+      }
+    }
+    
+    function addNotification() {
+      const input = document.getElementById('notifications-input');
+      const list = document.getElementById('notifications');
+      if (input.value.trim()) {
+        const li = document.createElement('li');
+        li.textContent = input.value;
+        list.appendChild(li);
+        input.value = '';
+      }
+    }
+    
+    function clearNotifications() {
+      document.getElementById('notifications').innerHTML = '';
+    }
+    
+    function updateMusic() {
+      const input = document.getElementById('music-input');
+      const audio = document.querySelector('audio');
+      const nowPlaying = document.querySelector('#player p');
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          audio.src = e.target.result;
+          nowPlaying.textContent = 'Now Playing: ' + input.files[0].name;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    
+    function updateHeaderStyle() {
+      const headerColor = document.getElementById('header-color').value;
+      const menuColor = document.getElementById('menu-color').value;
+      const bannerInput = document.getElementById('banner-image-input');
+      const header = document.getElementById('header');
+      const nav = document.getElementById('nav');
+    
+      header.style.backgroundColor = headerColor;
+      nav.style.backgroundColor = menuColor;
+    
+      if (bannerInput.files && bannerInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          header.style.backgroundImage = `url(${e.target.result})`;
+          header.style.backgroundSize = 'cover';
+          header.style.backgroundRepeat = 'no-repeat';
+          header.style.backgroundPosition = 'center';
+        };
+        reader.readAsDataURL(bannerInput.files[0]);
+      } else {
+        header.style.backgroundImage = '';
+      }
+    }
+    
+    function updateContentStyle() {
+      const type = document.getElementById('content-bg-type').value;
+      const body = document.body;
+    
+      // Reset background properties
+      body.style.background = '';
+      body.style.backgroundImage = '';
+      body.style.backgroundSize = '';
+      body.style.backgroundRepeat = '';
+      body.style.backgroundAttachment = '';
+      body.style.backgroundPosition = '';
+    
+      switch (type) {
+        case 'image':
+          const imageInput = document.getElementById('content-bg-image');
+          const patternType = document.querySelector('input[name="pattern-type"]:checked').value;
+          if (imageInput.files && imageInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              body.style.backgroundImage = `url(${e.target.result})`;
+              if (patternType === 'cover') {
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundRepeat = 'no-repeat';
+                body.style.backgroundAttachment = 'scroll';
+                body.style.backgroundPosition = 'center';
+              } else {
+                body.style.backgroundSize = 'auto';
+                body.style.backgroundRepeat = 'repeat';
+                body.style.backgroundAttachment = 'scroll';
+                body.style.backgroundPosition = '0 0';
+              }
+            };
+            reader.readAsDataURL(imageInput.files[0]);
+          }
+          break;
+        case 'color':
+          const color = document.getElementById('content-bg-color').value;
+          body.style.backgroundColor = color;
+          break;
+        case 'gradient':
+          const color1 = document.getElementById('gradient-color-1').value;
+          const color2 = document.getElementById('gradient-color-2').value;
+          const direction = document.getElementById('gradient-direction').value;
+          body.style.background = `linear-gradient(${direction}, ${color1}, ${color2})`;
+          break;
+        default:
+          break;
+      }
+    }
+    
+    function addFriendUpdate() {
+      const input = document.getElementById('friend-update-input');
+      const list = document.getElementById('friend-updates');
+      if (input.value.trim()) {
+        const li = document.createElement('li');
+        const updateHeader = document.createElement('div');
+        updateHeader.className = 'friend-update-header';
+        const img = document.createElement('img');
+        img.src = '/images/friend_avril.jpg';
+        img.alt = 'Avril Lavigne';
+        const updateInfo = document.createElement('div');
+        const friendName = document.createElement('div');
+        friendName.className = 'friend-name';
+        friendName.textContent = 'Avril Lavigne';
+        const updateTime = document.createElement('div');
+        updateTime.className = 'update-time';
+        updateTime.textContent = '2 hours ago';
+        updateInfo.appendChild(friendName);
+        updateInfo.appendChild(updateTime);
+        updateHeader.appendChild(img);
+        updateHeader.appendChild(updateInfo);
+        li.appendChild(updateHeader);
+        const p = document.createElement('p');
+        p.textContent = input.value;
+        li.appendChild(p);
+        list.appendChild(li);
+        input.value = '';
+      }
+    }
+    
+    function addBulletin() {
+      const input = document.getElementById('bulletin-input');
+      const list = document.getElementById('bulletins');
+      if (input.value.trim()) {
+        const li = document.createElement('li');
+        li.textContent = input.value;
+        list.appendChild(li);
+        input.value = '';
+      }
+    }
+    
+    function addCoolPerson() {
+      const nameInput = document.getElementById('cool-person-name-input');
+      const ageInput = document.getElementById('cool-person-age-input');
+      const people = document.getElementById('cool-new-people');
+      if (nameInput.value.trim() && ageInput.value.trim()) {
+        const person = document.createElement('div');
+        person.className = 'cool-person';
+        const img = document.createElement('img');
+        img.src = '/images/cool_person1.jpg';
+        img.alt = 'Cool Person 1';
+        person.appendChild(img);
+        const info = document.createElement('div');
+        info.textContent = `${nameInput.value}, ${ageInput.value}`;
+        person.appendChild(info);
+        people.appendChild(person);
+        nameInput.value = '';
+        ageInput.value = '';
+      }
+    }
+    
+    function addGalleryPhotos() {
+      const input = document.getElementById('gallery-upload');
+      const gallery = document.getElementById('photo-gallery');
+      if (input.files) {
+        Array.from(input.files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.width = '100px';
+            img.style.height = '100px';
+            img.style.objectFit = 'cover';
+            img.style.cursor = 'pointer';
+            img.onclick = function () {
+              openGalleryModal(e.target.result);
+            };
+            gallery.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+        input.value = ''; // Clear the input after uploading
+      }
+    }
+    
+    function openGalleryModal(imgSrc) {
+      const modal = document.getElementById('gallery-modal');
+      const modalImg = document.getElementById('modal-image');
+      modal.style.display = 'block';
+      modalImg.src = imgSrc;
+    }
+    
+    document.querySelector('.close-modal').addEventListener('click', function () {
+      document.getElementById('gallery-modal').style.display = 'none';
+    });
+    
+    document.getElementById('gallery-modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+    
+    function updateMusicCover() {
+        const input = document.getElementById('music-cover-input');
+        const player = document.getElementById('player');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const coverImgId = 'music-cover-img';
+                let coverImg = document.getElementById(coverImgId);
+                if (!coverImg) {
+                    coverImg = document.createElement('img');
+                    coverImg.id = coverImgId;
+                    coverImg.style.width = '65px';
+                    coverImg.style.height = 'auto';
+                    coverImg.style.marginBottom = '10px';
+                    player.insertBefore(coverImg, player.firstChild.nextSibling);
+                }
+                coverImg.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    function updatePlayerBackground() {
+        const type = document.getElementById('player-bg-type').value;
+        const player = document.getElementById('player');
+    
+        // Reset background properties
+        player.style.background = '';
+        player.style.backgroundImage = '';
+        player.style.backgroundSize = '';
+        player.style.backgroundRepeat = '';
+        player.style.backgroundAttachment = '';
+        player.style.backgroundPosition = '';
+    
+        switch (type) {
+            case 'image':
+                const imageInput = document.getElementById('player-bg-image');
+                if (imageInput.files && imageInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        player.style.backgroundImage = `url(${e.target.result})`;
+                        player.style.backgroundSize = 'cover';
+                        player.style.backgroundRepeat = 'no-repeat';
+                        player.style.backgroundPosition = 'center';
+                    };
+                    reader.readAsDataURL(imageInput.files[0]);
+                }
+                break;
+            case 'color':
+                const color = document.getElementById('player-bg-color').value;
+                player.style.backgroundColor = color;
+                break;
+            case 'gradient':
+                const color1 = document.getElementById('player-gradient-color-1').value;
+                const color2 = document.getElementById('player-gradient-color-2').value;
+                const direction = document.getElementById('player-gradient-direction').value;
+                player.style.background = `linear-gradient(${direction}, ${color1}, ${color2})`;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      const contentBgType = document.getElementById('content-bg-type');
+      if (contentBgType) {
+        contentBgType.dispatchEvent(new Event('change'));
+      }
+      document.getElementById('gradient-color-1').value = '#6698cb';
+      document.getElementById('gradient-color-2').value = '#003399';
+      document.getElementById('content-bg-color').value = '#ffffff';
+    });
+    </script>
+</body>
+</html>
